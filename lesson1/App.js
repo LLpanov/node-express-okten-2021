@@ -57,12 +57,12 @@
 //     }
 // }))
 
-// fs.mkdir(path.join(__dirname,'files','newYear','test','test2'),{recursive:true},(err => {
-//     if (err) {
-//         console.log(err)
-//         throw err
-//     }
-// }))
+fs.mkdir(path.join(__dirname,'files','newYear','test','test2'),{recursive:true},(err => {
+    if (err) {
+        console.log(err)
+        throw err
+    }
+}))
 
 // fs.readdir(path.join(__dirname, 'test'), (err, data) => {
 //     console.log(data)
