@@ -153,3 +153,49 @@
 //     })
 //
 // }));
+
+// 3. Створіть папку (можете вручну) напишіть скріпт який створить в ній якись дані (можуть бути нові папки і файли(в файли запишіть якусь дату) )
+// і напишіть функцію яка буде зчитувати папку і перевіряти якщо дані які в ній лежать - це файли тоді вам потрібно їх очистити,
+// але не видаляти, якщо дані - це папки, вам потрібно їх перейменувати і додати до назви префікс _new
+
+
+const fs = require('fs');
+const path = require('path');
+
+
+ function create() {
+    fs.mkdir(path.join(__dirname, 'Cw', 'task3', 'files'), {recursive: true}, (err => {
+        if (err) {
+            console.log(err);
+            throw err
+        }
+        fs.mkdir(path.join(__dirname, 'Cw', 'nothing'), (err1) => {
+            if (err1) {
+                console.log(err1);
+                throw err1
+            }
+
+        })
+
+        fs.writeFile(path.join(__dirname, 'Cw', 'task3', 'files', 'text.txt'), 'Dont worry,be happy', (err2 => {
+            if (err2) {
+                console.log(err2);
+                throw err2
+            }
+        }))
+
+
+    }));
+
+};
+create()
+
+const chekOut = () => {
+    fs.readFile(path.join(__dirname,'Cw','task3','files','text.txt'),'utf8',(err,data)=>{
+        if (err) {
+            console.log(err)
+            throw err
+        }
+    })
+
+}
