@@ -76,41 +76,70 @@
 
 const fs = require('fs');
 const path = require('path');
+//
+//
+//  function create() {
+//     fs.mkdir(path.join(__dirname, 'Cw', 'task3','folder'), {recursive: true}, (err => {
+//         if (err) {
+//             console.log(err);
+//             throw err;
+//         }
+//
+//         fs.writeFile(path.join(__dirname, 'Cw', 'task3', 'text.txt'), 'Dont worry,be happy', (err2 => {
+//             if (err2) {
+//                 console.log(err2);
+//                 throw err2;
+//             }
+//         }))
+//
+//
+//     }));
+//
+// };
+// create();
 
 
- function create() {
-    fs.mkdir(path.join(__dirname, 'Cw', 'task3', 'files'), {recursive: true}, (err => {
-        if (err) {
-            console.log(err);
-            throw err
-        }
-        fs.mkdir(path.join(__dirname, 'Cw', 'nothing'), (err1) => {
-            if (err1) {
-                console.log(err1);
-                throw err1
-            }
+ // не получилось аsync await та промісами прописати ((
 
-        })
-
-        fs.writeFile(path.join(__dirname, 'Cw', 'task3', 'files', 'text.txt'), 'Dont worry,be happy', (err2 => {
-            if (err2) {
-                console.log(err2);
-                throw err2
-            }
-        }))
-
-
-    }));
-
-};
-create()
-
-const chekOut = () => {
-    fs.readFile(path.join(__dirname,'Cw','task3','files','text.txt'),'utf8',(err,data)=>{
-        if (err) {
-            console.log(err)
-            throw err
-        }
-    })
-
-}
+//
+// const checkDirectory = (directory) => {
+//     fs.readdir(path.join(__dirname, 'Cw', directory), 'utf8', (err, files) => {
+//         if (err) {
+//             console.log(err);
+//             throw err
+//         }
+//         console.log(files);
+//
+//
+//         files.map(file => {
+//             fs.stat(path.join(__dirname,'Cw', directory,file), (err1, stats) => {
+//                 if (err1) {
+//                     console.log(err1);
+//                     throw err1;
+//                 }
+//
+//
+//                 if (stats.isFile()) {
+//                     fs.truncate(path.join(__dirname, 'Cw', directory, file), (err2) => {
+//                         if (err2) {
+//                             console.log(err2);
+//                             throw (err2)
+//                         }
+//                     })
+//                 } else if (stats.isDirectory()) {
+//                     fs.rename(path.join(__dirname, 'Cw', directory, file), path.join(__dirname, 'Cw', directory, `_new${file}`), (err3) => {
+//                         if (err3) {
+//                             console.log(err3);
+//                             throw err3;
+//                         }
+//                     })
+//                 }
+//             });
+//
+//         })
+//
+//     });
+//
+//
+// }
+// checkDirectory('task3');
