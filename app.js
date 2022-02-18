@@ -12,7 +12,7 @@ app.set('view engine', '.hbs');
 app.engine('.hbs', engine({defaultLayout: ''}));
 app.set('views', path.join(__dirname, 'static'));
 
-const users = [
+let users = [
     {id: 1, firstName: 'Andriy', lastName: 'Kox', age: 23, password: 12345, email: '@nosorog@mail.ru', city: 'Berlin'},
     {id: 2, firstName: 'Galya', lastName: 'Vodka', age: 26, password: 12345, email: '@yandex.ru', city: 'Rostov'},
     {id: 3, firstName: 'Vasa', lastName: 'Pumpkin', age: 33, password: 12345, email: 'pupkin@yahoo.com', city: 'Minsk'},
@@ -25,10 +25,14 @@ app.get('/singIn', (req, res) => {
     res.render('single');
 });
 
+
 app.post('/singIn', ({body}, res) => {
-    const checkValue = users.find(user => user.email === body.email && user.password === body.password);
+    const checkValue = users.find(user => user.email === body.email && user.password.toString() === body.password);
     if (checkValue) {
-        res.redirect(`/users/${checkValue.id}`);
+        res.redirect(`/users/${checkValue.id.toString()}`);
+    } else {
+        res.redirect('/error');
+        error = 'Такого Користовича не існує або він був видалений...';
     }
 
 });
@@ -39,7 +43,7 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', ({body}, res) => {
-    console.log(users,body)
+    console.log(users, body)
     const checkUser = users.some(user => user.email === body.email);
     if (checkUser) {
         error = 'Такий емейл вже існує...';
@@ -84,6 +88,16 @@ app.get('/users/:id', ({params}, res) => {
     }
     res.render('user', ({user}));
 
+
+});
+app.post('/users/:id', ({params}, res) => {
+    const {id} = params;
+    const userDel = users[id - 1]
+    // users = users.filter(user => user.id.toString() !== id);
+    // по перформансу по кайфу)
+    users.splice(users.indexOf(userDel), 1);
+
+    res.redirect('/users');
 
 });
 
