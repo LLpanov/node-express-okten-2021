@@ -7,26 +7,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>User</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        .box{
+
+        .box {
             display: flex;
             justify-content: center;
             margin-top: 100px;
         }
-     .wrap {
-         display: flex;
-         flex-direction: column;
-         font-weight: bold;
-         font-size: 25px;
-         width: 25%;
-         background-color: cadetblue;
-         gap: 10px;
-         padding: .6rem;
-     }
+
+        .wrap {
+            display: flex;
+            flex-direction: column;
+            font-weight: bold;
+            font-size: 25px;
+            width: 25%;
+            background-color: cadetblue;
+            gap: 10px;
+            padding: .6rem;
+        }
     </style>
 </head>
 <body class="box">
@@ -38,6 +40,9 @@
     <div>Password: {{user.password}}</div>
     <div>Email: {{user.email}}</div>
     <div>City: {{user.city}}</div>
+    <form action="/users/{{user.id}}" method="post">
+        <button>Delete</button>
+    </form>
 </div>
 </body>
 </html>

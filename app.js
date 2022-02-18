@@ -26,18 +26,20 @@ app.get('/singIn', (req, res) => {
 });
 
 app.post('/singIn', ({body}, res) => {
-    const checkUser = users.filter(user => user.email === body.email && user.password === body.password);
-    if (checkUser) {
-        res.redirect(`/users/${checkUser.id}`);
+    const checkValue = users.find(user => user.email === body.email && user.password === body.password);
+    if (checkValue) {
+        res.redirect(`/users/${checkValue.id}`);
     }
 
 });
+
 app.get('/login', (req, res) => {
     res.render('login');
 
 });
 
 app.post('/login', ({body}, res) => {
+    console.log(users,body)
     const checkUser = users.some(user => user.email === body.email);
     if (checkUser) {
         error = 'Такий емейл вже існує...';
