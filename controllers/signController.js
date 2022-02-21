@@ -1,6 +1,7 @@
 const users = require('../db/users');
 
 class signController {
+
     getSign(req, res) {
         res.render('single');
     }

@@ -13,6 +13,6 @@ routes.use('/error', errorRouter);
 
 routes.use((req, res) => {
     res.render('NotFound');
-})
+});
 
 module.exports = routes;

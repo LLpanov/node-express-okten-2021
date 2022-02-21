@@ -7,6 +7,6 @@ const loginRouter = Router();
 
 loginRouter.get('/', loginController.getForm);
 
-loginRouter.post('/', loginMiddleware ,emailMiddleware,loginController.checkForm);
+loginRouter.post('/', loginMiddleware, emailMiddleware, loginController.checkForm);
 
 module.exports = loginRouter;
