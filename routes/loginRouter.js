@@ -1,24 +1,12 @@
 const {Router} = require('express');
-const users = require('../db/users');
+const loginController = require('../controllers/loginController');
+const loginMiddleware = require('../middleware/loginMiddelware');
+const emailMiddleware = require('../middleware/emailMiddleware');
 
 const loginRouter = Router();
 
-loginRouter.get('/', (req, res) => {
-    res.render('login');
+loginRouter.get('/', loginController.getForm);
 
-});
-loginRouter.post('/',({body}, res) => {
-    console.log(users, body)
-    const checkUser = users.some(user => user.email === body.email);
-    if (checkUser) {
-        error = 'Такий емейл вже існує...';
-        res.redirect('/error');
-        return;
-    }
-
-    users.push({id: new Date().getTime(), ...body});
-    res.redirect('/users');
-
-});
+loginRouter.post('/', loginMiddleware ,emailMiddleware,loginController.checkForm);
 
 module.exports = loginRouter;
