@@ -1,6 +1,11 @@
-import express from 'express';
- console.log('2222222222222222222')
+import express, { Request, Response } from 'express';
+import { users } from './users';
+
 const app = express();
+console.log(users);
+app.get('/', (req:Request, res:Response) => {
+    res.end();
+});
 
 app.listen(3200, () => {
     console.log('Server has started');
